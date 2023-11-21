@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 {% block contenido %}
-<form method="post">
+
+{% if Client.id %}
+<form action="{% url 'delete_Client' Client.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
+    <input type="submit" value="eliminar"/>
 </form>
+
+{% else %}
+    <!-- caso donde Client.id no está definido o no es válido -->
+{% endif %}
 {% endblock %}

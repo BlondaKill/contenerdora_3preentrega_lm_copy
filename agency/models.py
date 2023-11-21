@@ -8,6 +8,7 @@ class  Model_girl(models.Model):
     height = models.FloatField()
     age = models.IntegerField()
     birthdate = models.DateField(null=True, blank=True)
+    imagen = models.ImageField(upload_to='imagenes/', blank=True, null=True)
 
 
 class Brand(models.Model):

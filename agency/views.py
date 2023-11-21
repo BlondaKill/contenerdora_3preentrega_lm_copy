@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.urls import reverse
 
 from .models import *
 from .forms import *
@@ -140,3 +141,14 @@ def search_client(request):
             results = results.filter(email=email)
 
     return render(request, 'agency/client_search.html', {'form': form, 'results': results})
+
+
+def delete_Client(request,id):
+   # se obtiene la modelo de la bd
+   curso = Client.objects.get(id=id)
+   if request.method == "POST":
+   # borra el curso de la bd   
+       Client.delete()
+   # redirecciona a la URL exitosa    
+       url_exitosa = reverse('listar_client')
+       return redirect(url_exitosa)
