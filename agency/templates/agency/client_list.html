@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h1>Lista</h1>
-<ul>
-    {% for client in client %}
-        <li>{{ client.name }} {{ client.last_name}} {{ client.email}}</li>
-    {% endfor %}
-</ul>
+
+
+
+
+
+{% for client in client %}
+<li>{{ client.name }} {{ client.last_name}} {{ client.email}}</li>
+<form action="{% url 'delete_Client' client.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <input type="submit" value="eliminar"/>
+</form>
+
+{% endfor %}
 {% endblock %}

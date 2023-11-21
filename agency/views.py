@@ -73,6 +73,16 @@ def search_model_girl(request):
 
     return render(request, 'agency/modelgirl_search.html', {'form': form, 'results': results})
 
+def delete_model_girl(request, id):
+   # se obtiene la modelo de la bd
+   Model_girl = Model_girl.objects.get(id=id)
+   if request.method == "POST":
+       # borra el curso de la bd
+       Model_girl.delete()
+   # redirecciona a la URL exitosa
+       url_exitosa = reverse('list_model_girl')
+       return redirect(url_exitosa)
+
 
 def create_brand(request):
     if request.method == 'POST':
@@ -106,6 +116,17 @@ def search_brand(request):
             results = results.filter(city=city)
 
     return render(request, 'agency/brand_search.html', {'form': form, 'results': results})
+
+
+def delete_Brand(request, id):
+   # se obtiene la modelo de la bd
+   brand = Brand.objects.get(id=id)
+   if request.method == "POST":
+       # borra el curso de la bd
+       brand.delete()
+   # redirecciona a la URL exitosa
+       url_exitosa = reverse('list_brand')
+       return redirect(url_exitosa)
 
 
 def create_client(request):
@@ -143,12 +164,15 @@ def search_client(request):
     return render(request, 'agency/client_search.html', {'form': form, 'results': results})
 
 
-def delete_Client(request,id):
+
+
+
+def delete_Client(request, id):
    # se obtiene la modelo de la bd
-   curso = Client.objects.get(id=id)
+   cliente = Client.objects.get(id=id)
    if request.method == "POST":
-   # borra el curso de la bd   
-       Client.delete()
-   # redirecciona a la URL exitosa    
-       url_exitosa = reverse('listar_client')
+       # borra el curso de la bd
+       cliente.delete()
+   # redirecciona a la URL exitosa
+       url_exitosa = reverse('list_client')
        return redirect(url_exitosa)

@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block contenido %}
 <h1>Lista</h1>
-<ul>
-    {% for brand in brand %}
-        <li>{{ brand.name }} {{ brand.city}} {{ brand.address}}</li>
-    {% endfor %}
-</ul>
+
+
+{% for brand in brand %}
+<li>{{ brand.name }} {{ brand.last_name}} {{ brand.email}}</li>
+<form action="{% url 'delete_Brand' brand.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <input type="submit" value="eliminar"/>
+</form>
+
+{% endfor %}
 {% endblock %}

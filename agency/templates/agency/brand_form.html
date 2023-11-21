@@ -1,8 +1,16 @@
+
 {% extends "base.html" %}
 {% block contenido %}
-<form method="post">
+
+{% if Client.id %}
+<form action="{% url 'delete_Brand' Brand.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
+    <input type="submit" value="eliminar"/>
 </form>
+
+{% else %}
+   
+{% endif %}
 {% endblock %}

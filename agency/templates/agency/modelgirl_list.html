@@ -2,9 +2,17 @@
 {% block contenido %}
 
 <h1>Lista</h1>
-<ul>
-    {% for girl in girls %}
-        <li>{{ girl.name }} {{ girl.last_name }}</li>
-    {% endfor %}
-</ul>
+
+
+
+{% for girl in girls %}
+<li>{{ girl.name }} {{ girl.last_name}}</li>
+<form action="{% url 'delete_model_girl' girl.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <input type="submit" value="eliminar"/>
+</form>
+
+{% endfor %}
 {% endblock %}
